@@ -11,7 +11,7 @@ with sr.Microphone() as source:
 
         # Convert audio to string
         text = recognizer.recognize_google(audio)
-        print('Original Read: {}'.format(text))
+        #print('Original Read: {}'.format(text))
 
         if "open" in text:
 
@@ -19,7 +19,7 @@ with sr.Microphone() as source:
             appIndex = text.find('open')
             text = text[(appIndex + 5):]
 
-            print('Spliced Read: {}'.format(text))
+            #print('Spliced Read: {}'.format(text))
             
             # Attempt to launch exe file
             try:
@@ -28,17 +28,17 @@ with sr.Microphone() as source:
                 pathToProgramFiles = "C:/Program Files (x86)"
                 pathToProgramFiles += "/" + text
 
-                print(pathToProgramFiles)
                 os.chdir(pathToProgramFiles)
 
-                s=os.getcwd()
-                print(s)
+                exeName = text + ".exe"
+                os.startfile(exeName)
 
             except:
-                print('Error: File not found.')
+                print('Error: Folder not found.')
+                print('\tAttempted Path: {}'.format(pathToProgramFiles))
 
         else:
-            print('No open command found.')
+            print('Error: No \"open\" command found.')
 
     except:
-        print('Not understood')
+        print('Error: Speech not understood.')
