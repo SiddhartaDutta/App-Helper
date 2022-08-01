@@ -14,21 +14,25 @@ with sr.Microphone() as source:
         print('Original Read: {}'.format(text))
 
         if "open" in text:
-            
+
             # Modify string to just open command
             appIndex = text.find('open')
-            text = text[appIndex:]
+            text = text[(appIndex + 5):]
 
             print('Spliced Read: {}'.format(text))
             
             # Attempt to launch exe file
             try:
 
-                # Change directory to "Program Files (x86)"
+                # Change directory to guessed subdir of "Program Files (x86)"
                 pathToProgramFiles = "C:/Program Files (x86)"
+                pathToProgramFiles += "/" + text
+
+                print(pathToProgramFiles)
                 os.chdir(pathToProgramFiles)
 
-                # Change directory to requested
+                s=os.getcwd()
+                print(s)
 
             except:
                 print('Error: File not found.')
