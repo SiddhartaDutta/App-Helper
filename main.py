@@ -13,27 +13,28 @@ with sr.Microphone() as source:
         text = recognizer.recognize_google(audio)
         print('Original Read: {}'.format(text))
 
-        # Modify string to just open command
-        appIndex = text.find('open')
-        text = text[appIndex:]
+        if "open" in text:
+            
+            # Modify string to just open command
+            appIndex = text.find('open')
+            text = text[appIndex:]
 
-        print('Spliced Read: {}'.format(text))
+            print('Spliced Read: {}'.format(text))
+            
+            # Attempt to launch exe file
+            try:
 
-        try:
+                # Change directory to "Program Files (x86)"
+                pathToProgramFiles = "C:/Program Files (x86)"
+                os.chdir(pathToProgramFiles)
 
-            # Change directory to "Program Files (x86)"
-            #pathToProgramFiles = "C:/Program Files (x86)"
-            #os.chdir(pathToProgramFiles)
+                # Change directory to requested
 
-            test = os.getcwd()
-            print(test)
+            except:
+                print('Error: File not found.')
 
-            path = "C:/Users/siddh/OneDrive/Documents/Visual Studio Code"
-            os.chdir(path)
-            test = os.getcwd()
-            print(test)
-        except:
-            print('yur')
+        else:
+            print('No open command found.')
 
     except:
         print('Not understood')
