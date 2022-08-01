@@ -30,6 +30,7 @@ with sr.Microphone() as source:
 
                 os.chdir(pathToProgramFiles)
 
+                # Launch .exe file
                 exeName = text + ".exe"
                 os.startfile(exeName)
 
