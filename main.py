@@ -20,12 +20,15 @@ with sr.Microphone() as source:
         print('Spliced Read: {}'.format(text))
 
         try:
-            pathToProgramFiles = "C:\Program Files (x86)"
+
+            # Change directory to "Program Files (x86)"
+            #pathToProgramFiles = "C:/Program Files (x86)"
+            #os.chdir(pathToProgramFiles)
 
             test = os.getcwd()
             print(test)
 
-            path = "C:\Users\siddh\OneDrive\Documents\Visual Studio Code"
+            path = "C:/Users/siddh/OneDrive/Documents/Visual Studio Code"
             os.chdir(path)
             test = os.getcwd()
             print(test)
