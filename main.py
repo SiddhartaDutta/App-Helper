@@ -21,7 +21,7 @@ with sr.Microphone() as source:
 
             #print('Spliced Read: {}'.format(text))
             
-            # Attempt to launch exe file
+            # Attempt to launch .exe file from "Program Files (x86)"
             try:
 
                 # Change directory to guessed subdir of "Program Files (x86)"
@@ -33,6 +33,9 @@ with sr.Microphone() as source:
                 # Launch .exe file
                 exeName = text + ".exe"
                 os.startfile(exeName)
+
+                # Print confirmation message
+                print('Opening {}...'.format(exeName))
 
             except:
                 print('Error: Folder not found.')
