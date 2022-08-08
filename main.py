@@ -21,27 +21,25 @@ with sr.Microphone() as source:
             text = text[(appIndex + 5):]
 
             exeName = text + ".exe"
-
-            #print('Spliced Read: {}'.format(text))
             
-            # Attempt to launch .exe file from "Program Files (x86)"
-            try:
+            # # Attempt to launch .exe file from "Program Files (x86)"
+            # try:
 
-                # Change directory to guessed subdir of "Program Files (x86)"
-                pathToProgramFiles = "C:/Program Files (x86)"
-                pathToProgramFiles += "/" + text
+            #     # Change directory to guessed subdir of "Program Files (x86)"
+            #     pathToProgramFiles = "C:/Program Files (x86)"
+            #     pathToProgramFiles += "/" + text
 
-                os.chdir(pathToProgramFiles)
+            #     os.chdir(pathToProgramFiles)
 
-                # Launch .exe file
-                os.startfile(exeName)
+            #     # Launch .exe file
+            #     os.startfile(exeName)
 
-                # Print confirmation message
-                print('Opening {}...'.format(exeName))
+            #     # Print confirmation message
+            #     print('Opening {}...'.format(exeName))
 
-            except:
-                print('Error: Folder not found.')
-                print('\tAttempted Path: {}'.format(pathToProgramFiles))
+            # except:
+            #     print('Error: Folder not found.')
+            #     print('\tAttempted Path: {}'.format(pathToProgramFiles))
 
             # Pathlib module search
             try:
@@ -58,7 +56,6 @@ with sr.Microphone() as source:
 
                         # Print confirmation messge
                         print('Opening {}...'.format(exeName))
-                        #print(f'File Found = {file.absolute()}')
 
                         break
 
