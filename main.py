@@ -1,5 +1,6 @@
 import speech_recognition as sr
 import os
+from pathlib import Path
 
 recognizer = sr.Recognizer()
 
@@ -19,6 +20,8 @@ with sr.Microphone() as source:
             appIndex = text.find('open')
             text = text[(appIndex + 5):]
 
+            exeName = text + ".exe"
+
             #print('Spliced Read: {}'.format(text))
             
             # Attempt to launch .exe file from "Program Files (x86)"
@@ -31,7 +34,6 @@ with sr.Microphone() as source:
                 os.chdir(pathToProgramFiles)
 
                 # Launch .exe file
-                exeName = text + ".exe"
                 os.startfile(exeName)
 
                 # Print confirmation message
@@ -40,6 +42,28 @@ with sr.Microphone() as source:
             except:
                 print('Error: Folder not found.')
                 print('\tAttempted Path: {}'.format(pathToProgramFiles))
+
+            # Pathlib module search
+            try:
+
+                # Search from start of primary drive
+                search_path = Path('C:/')
+
+                print('Searching system...')
+                for file in search_path.glob('**/*'):
+                    if file.name == exeName:
+
+                        # Launch .exe file
+                        os.startfile(file.absolute())
+
+                        # Print confirmation messge
+                        print('Opening {}...'.format(exeName))
+                        #print(f'File Found = {file.absolute()}')
+
+                        break
+
+            except:
+                print('Error: File "{}" not found in system.'.format(exeName))
 
         else:
             print('Error: No \"open\" command found.')
